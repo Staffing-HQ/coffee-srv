@@ -1,0 +1,9 @@
+site_name: "Coffee Service"
+site_description: "Coffee App demo"
+
+nav:
+  - Introduction: index.md
+  - Help: help.md
+
+plugins:
+  - techdocs-core

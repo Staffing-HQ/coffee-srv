@@ -1,0 +1,44 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: coffee-service
+  title: Coffee Service
+  description: Coffee App demo
+  annotations:
+    github.com/project-slug: Staffing-HQ/coffee-srv
+    backstage.io/techdocs-ref: dir:.
+    sonarqube.org/project-key: coffee-sonarqube
+    snow/project-id: coffee-service
+  tags:
+    - spring-boot
+    - java
+    - maven
+spec:
+  type: service
+  owner: user:default/efalisotamerat
+  lifecycle: experimental
+  system: system:default/users-system
+  dependsOn:
+    - 'api:default/auth-srv-api'
+    - 'api:default/users-srv-api'
+  providesApis:
+    - 'api:default/coffee-service-api'
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: coffee-service-api
+  title: Coffee Service API
+  description: REST API for the Coffee Service
+  annotations:
+    github.com/project-slug: Staffing-HQ/coffee-srv
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: user:default/efalisotamerat
+  dependsOn:
+    - component:default/coffee-service
+  system: system:default/users-system
+  definition:
+    $text: ./openapi.yaml
